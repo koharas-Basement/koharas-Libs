@@ -33,7 +33,7 @@ function kohara:damage/apply/macro with storage kohara:temp damage
 function #kohara:damage/post_damage
 
 # Print out custom death messages
-execute store result storage kohara:temp damage.health float 1 run data get entity @s Health 1
+data modify storage kohara:temp damage.health set from entity @s Health
 execute if score #death_messages kohara.misc matches 1 if entity @s[type=player] if data storage kohara:temp {damage:{health:0f}} run function #kohara:damage/death_messages
 execute if score #death_messages kohara.misc matches 1 if data entity @s Owner if score #death_messages kohara.misc matches 1 if data storage kohara:temp {damage:{health:0f}} run function #kohara:damage/death_messages
 # And then reenable vanilla ones!
