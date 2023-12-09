@@ -46,5 +46,5 @@ $tag @s remove $(tag)
 # Remove the attacker tag
 tag @e[tag=kohara.attacker] remove kohara.attacker
 
-#scoreboard players reset #damage kohara.misc
-#scoreboard players reset #damage_ap kohara.misc
+scoreboard players reset #damage kohara.misc
+scoreboard players reset #damage_ap kohara.misc
