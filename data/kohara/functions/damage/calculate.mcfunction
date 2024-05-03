@@ -4,6 +4,7 @@ $tag @s add $(tag)
 $scoreboard players set #armor_penetration kohara.misc $(armor_penetration)
 $scoreboard players set #damage_boost_efficiency kohara.misc $(damage_boost_efficiency)
 $data modify storage kohara:temp damage.type set value "$(damage_type)"
+$data modify storage kohara:temp damage.type_ap set value "$(ap_damage_type)"
 
 # Is there an attacker?
 scoreboard players set #has_attacker kohara.misc 0
@@ -14,7 +15,9 @@ execute if score #has_attacker kohara.misc matches 1 run data modify storage koh
 
 execute if score #has_attacker kohara.misc matches 1 unless score #damage_boost_efficiency kohara.misc matches 0 as @e[tag=kohara.attacker,limit=1,sort=nearest] run function kohara:damage/bonus_damage
 
-execute unless score #armor_penetration kohara.misc matches 0 run function kohara:damage/armor_penetration
+execute store result storage kohara:temp damage.armor_penetration int 1 run scoreboard players get #armor_penetration kohara.misc
+execute unless score #armor_penetration kohara.misc matches 0 run function kohara:damage/armor_penetration with storage kohara:temp damage
+
 
 execute store result storage kohara:temp damage.damage_ap float 0.1 run scoreboard players get #damage_ap kohara.misc
 execute store result storage kohara:temp damage.damage float 0.1 run scoreboard players get #damage kohara.misc
